@@ -11,28 +11,14 @@ This project provides a complete machine learning pipeline for SMS spam detectio
 ### Dependencies
 
 Install all required packages:
+```
+pip install tqdm numpy pandas psutil torch scikit-learn sqlalchemy langdetect transformers sentence-transformers pymysql
+pip install fasttext-wheel
+```
 
-```
-pip install tqdm numpy pandas psutil torch scikit-learn sqlalchemy langdetect fasttext transformers sentence-transformers pymysql
-```
-
-## ⚠ Notes
-
-- On Windows with Python 3.12, fasttext may fail to install from PyPI. Use a precompiled wheel:
-```
-pip install https://github.com/ffreemt/wheelhouse/releases/download/2023-12-01/fasttext-0.9.2-cp312-cp312-win_amd64.whl
-```
-- On RHEL 9, install development tools:
-```
-sudo dnf install gcc gcc-c++ python3-devel mariadb-devel
-```
 ## 🗂 Project Files
 
 - spam_detection.py: Main executable script
-
-- lid.176.ftz: FastText model for language detection (must be in working directory)
-
-- script.log: Log file tracking progress and memory usage
 
 - df_spam_labeled.csv: Output from transformer spam labelling
 
@@ -54,6 +40,14 @@ DB_CONFIG = {
 }
 ```
 You can also modify the SQL query inside the get_data_from_mariadb() function if needed.
+```
+# Query to fetch data
+        query = f"""
+            SELECT payload, smsc_src_addr, LEFT(current_datetime, 16) as tx_datetime
+            FROM {table_name}
+            LIMIT 100
+        """
+```
 
 ## 🚀 Execution
 
@@ -61,11 +55,6 @@ You can also modify the SQL query inside the get_data_from_mariadb() function if
 ```
 python spam_detection.py
 ```
-### ▶ On RHEL 9
-```
-python3 spam_detection.py
-```
-Ensure the working directory contains lid.176.ftz.
 
 ## 📝 Output Files
 
@@ -101,13 +90,13 @@ Ensure the working directory contains lid.176.ftz.
 
     - Calculates statistics:
 
-    - Average number of messages per user per minute
+      - Average number of messages per user per minute
 
-    - Average number of identical payloads per minute
+      - Average number of identical payloads per minute
 
     - Extracts counts of specific patterns:
 
-    - URLs, phone numbers, newlines, punctuation, and monetary terms
+      - URLs, phone numbers, newlines, punctuation, and monetary terms
 
 5. Spam Classification (Transformer-Based)
 
@@ -138,10 +127,6 @@ Ensure the working directory contains lid.176.ftz.
 ## 📌 Notes
 
   - Make sure you have internet access the first time to download the HuggingFace transformer model
-
-  - Avoid hardcoding DB passwords in production. Use .env or secrets management
-
-  - You can increase LIMIT 100 in the SQL query for more data during training
 
 ## 🤝 License
 
