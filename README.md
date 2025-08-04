@@ -1,6 +1,6 @@
-SMS Spam Detection Pipeline
+# SMS Spam Detection Pipeline
 
-This project provides a complete machine learning pipeline for SMS spam detection. It fetches SMS data from a MariaDB database, applies language detection, performs text preprocessing, classifies the messages using a transformer model, and trains a Random Forest classifier to predict spam. It then exports labeled and predicted results to CSV.
+## This project provides a complete machine learning pipeline for SMS spam detection. It fetches SMS data from a MariaDB database, applies language detection, performs text preprocessing, classifies the messages using a transformer model, and trains a Random Forest classifier to predict spam. It then exports labeled and predicted results to CSV.
 
 📦 Requirements
 
