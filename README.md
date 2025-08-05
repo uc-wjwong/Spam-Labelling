@@ -45,13 +45,13 @@ You can also modify the SQL query inside the get_data_from_mariadb() function if
         query = f"""
             SELECT payload, smsc_src_addr, LEFT(current_datetime, 16) as tx_datetime
             FROM {table_name}
-            LIMIT 100
+            LIMIT 1000
         """
 ```
 
 ## 🚀 Execution
 
-### ▶ On Windows 11
+### ▶ On Windows 11 / Visual Sudio Code
 ```
 python spam_detection.py
 ```
