@@ -49,6 +49,20 @@ You can also modify the SQL query inside the get_data_from_mariadb() function if
         """
 ```
 
+### 💾 Modify the Download Path
+Labelled Data
+```
+    # Save as CSV
+    log_checkpoint("Downloading data to csv...")
+    df.to_csv('C:/Users/wj_wong/Downloads/df_spam_labeled.csv', index=False)
+    log_checkpoint("Download COMPLETED")
+```
+Result
+```
+    df_result.to_csv('C:/Users/wj_wong/Downloads/df_spam_labeled_with_predictions.csv', index=False)
+    log_checkpoint("Final prediction CSV saved")
+```
+
 ## 🚀 Execution
 
 ### ▶ On Windows 11 / Visual Sudio Code
