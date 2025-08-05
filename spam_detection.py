@@ -76,7 +76,7 @@ def get_data_from_mariadb(host, database, username, password, port=3306, table_n
         query = f"""
             SELECT payload, smsc_src_addr, LEFT(current_datetime, 16) as tx_datetime
             FROM {table_name}
-            LIMIT 100
+            LIMIT 1000
         """
         
         # Read data into pandas DataFrame using SQLAlchemy engine
@@ -272,7 +272,7 @@ if __name__ == '__main__':
 
     # Save as CSV
     log_checkpoint("Downloading data to csv...")
-    df.to_csv('C:/Users/wj_wong/Desktop/spam_sms/spam_labelling/df_spam_labeled.csv', index=False)
+    df.to_csv('C:/Users/wj_wong/Downloads/df_spam_labeled.csv', index=False)
     log_checkpoint("Download COMPLETED")
 
     # Turn sentences into vector
@@ -313,5 +313,5 @@ if __name__ == '__main__':
     df_result = df_result.iloc[y_test.index].copy()
     df_result['predicted_is_spam'] = y_pred
 
-    df_result.to_csv('C:/Users/wj_wong/Desktop/spam_sms/spam_labelling/df_spam_labeled_with_predictions.csv', index=False)
+    df_result.to_csv('C:/Users/wj_wong/Downloads/df_spam_labeled_with_predictions.csv', index=False)
     log_checkpoint("Final prediction CSV saved")
